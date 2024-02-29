@@ -1,22 +1,26 @@
 from datetime import datetime
 
-now = datetime.now()
+def get_days_from_today(date):
+    try:
+        input_date = datetime.strptime(date, '%Y-%m-%d')   # перетворення рядка у об'єкт datetime
+        current_date = datetime.today()    # поточна дата
+        dif = current_date.toordinal() - input_date.toordinal()  # різниці між поточною датою та заданою датою
+        print(dif)
+        return dif
 
-# Форматування дати і часу
-formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
-print(formatted_date) 
+    except ValueError:
+        # Обробка помилок у форматі дати
+        print("Формат датиповинен відповідним до формату 'РРРР-ММ-ДД'.")
 
-# Форматування лише дати
-formatted_date_only = now.strftime("%A, %d %B %Y")
-print(formatted_date_only)
+# test case
+input_date = "2029-03-28"  # Поточна дата для прикладу
+days = get_days_from_today(input_date)
+print(days)  
 
-# Форматування лише часу
-formatted_time_only = now.strftime("%I:%M %p")
-print(formatted_time_only)  
 
-# Форматування лише дати
-formatted_date_only = now.strftime("%d.%m.%Y")
-print(formatted_date_only)
+
+
+
 
 
 
